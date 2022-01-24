@@ -7,11 +7,15 @@
     <title>About me</title>
 </head>
 <body>
-    <h1> Welcome to My Website</h1>
+    <h1> About Me</h1>
     <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam magnam quis, asperiores laborum maiores eos corrupti, nostrum optio nihil eum delectus omnis? Doloremque repudiandae est eius sunt dolor consequatur natus.</p>
+
+    <p>ที่อยู่ : {{$addr}}</p>
+    <p>เบอร์ติดต่อ : {{$phone}}</p>
+    <p>Email : {{$mail}}</p>
     <a href="{{url('/')}}">Home</a>
     <a href="{{route('about')}}">About</a>
     <a href="{{route('admin')}}">Admin</a>
-    <a href="{{url('/member/asdadadds')}}">Member</a>
+    <a href="{{route('member')}}">Member</a>
 </body>
 </html>

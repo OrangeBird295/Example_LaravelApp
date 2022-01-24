@@ -18,9 +18,9 @@ use App\Http\Controllers\MemberController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 //การสร้าง Route
-Route::get('/about/asdadadds', [AboutController::class, 'index'])->name('about');
-Route::get('/admin/asdadadds', [AdminController::class, 'index'])->name('admin');
-Route::get('/member/asdadadds', [MemberController::class, 'index']);
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('check');
+Route::get('/member', [MemberController::class, 'index'])->name('member');
