@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MemberController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,8 @@ Route::get('/', function () {
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('check');
 Route::get('/member', [MemberController::class, 'index'])->name('member');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    //value from model User
+    $user=User::all();
+    return view('dashboard', compact('user'));
+})->name('dashboard');
