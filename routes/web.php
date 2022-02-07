@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MemberController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $user=DB::table('users')->get();
     return view('dashboard', compact('user'));
 })->name('dashboard');
+Route::get('/department/all', [DepartmentController::class, 'index'])->name('department');
