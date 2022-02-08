@@ -11,6 +11,9 @@
             <div class="row">
                 <!-- แถวของ Bootstrap มี12ส่วน 8ส่วนให้เป็นเนื่อหาที่ไปดึงมาจากฐานข้อมูลพวกตาราง -->
                 <div class="col-md-8">
+                    @if(session("Success"))
+                        <div class="alert alert-success">{{session("Success")}}</div>
+                    @endif
                     <div class="card">
                         <div class="card-header"> ตารางข้อมูลแผนก </div>
                     </div>
@@ -25,7 +28,7 @@
                                 <!-- เพื่อป้องกันการ Hack ระบบรูปแบบการป้อน Scirpt -->
                                 @csrf
                                 <div class="form-group">
-                                    <label for="department_name"> ชื่อตำแหน่งงาน </label>
+                                    <label for="department_name"> ชื่อแผนก </label>
                                     <input type="text" class="form-control" name="department_name">
                                 </div>
                                 @error('department_name')
