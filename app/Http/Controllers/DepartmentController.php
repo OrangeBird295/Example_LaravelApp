@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
@@ -22,15 +23,23 @@ class DepartmentController extends Controller
         ],
         [
             'department_name.required'=>"กรุณาป้อนชื่อแผนกด้วยครับ",
-            'department_name.max'=>"ห้ามป้อนเกิน 25 ตัวอักษร"
+            'department_name.max'=>"ห้ามป้อนเกิน 25 ตัวอักษร",
+            'department_name.unique'=>"มีข้อมูลนี้ในฐานข้อมูลแล้ว"
         ]
         );
-        //บันทึกข้อมูล
-        $department = new Department;
-        // Colimn Name = Value From View(index)
-        $department->department_name = $request->department_name;
-        $department->user_id = Auth::user()->id; 
-        $department->save();
+        //บันทึกข้อมูล แบบ Eloquent
+        // $department = new Department;
+        // // Column Name = Value From View(index)
+        // $department->department_name = $request->department_name;
+        // $department->user_id = Auth::user()->id; 
+        // $department->save();
+
+        //บันทึกข้อมูล แบบ Query Builder ไม่ต้องใช้ model
+        $data = array();
+        $data["department_name"] = $request->department_name;
+        $data["user_id"] = Auth::user()->id;
+        DB::table('departments')->insert($data);
+
         return redirect()->back()->with('Success', "บันทึกข้อมูลเรียบร้อย");
     }
 }

@@ -29,10 +29,10 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middlewa
 Route::get('/member', [MemberController::class, 'index'])->name('member');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     //value from model User
-    // $user=User::all();
+    $user=User::all();
 
     //Query Builder การดึงข้อมูลผ่าน DB โดยไม่ต้องสร้าง Model
-    $user=DB::table('users')->get();
+    // $user=DB::table('users')->get();
     return view('dashboard', compact('user'));
 })->name('dashboard');
 Route::get('/department/all', [DepartmentController::class, 'index'])->name('department');
