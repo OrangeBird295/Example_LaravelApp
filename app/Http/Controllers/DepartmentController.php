@@ -10,7 +10,14 @@ use Illuminate\Support\Facades\DB;
 class DepartmentController extends Controller
 {
     public function index(){
-        $departments = Department::all();
+        // Get Value type Eloquent
+        // $departments = Department::all();
+
+        // นำข้อมูลมา Show ตามจำนวนที่ตั่งค่า 
+        $departments=Department::paginate(3);
+
+        // Get Value type Query Builder 
+        // $departments=DB::table('departments')->get();
         return view('admin.department.index', compact('departments')); 
     }
     public function store(Request $request){

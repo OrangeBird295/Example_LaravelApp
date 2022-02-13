@@ -44,6 +44,7 @@
                                 @endforeach
                             </tbody>
                             </table>
+                            {{$departments->links()}}
                     </div>
                 </div>
                 <!-- ส่วนอีก 4 ส่วนเป็นแบบฟอร์ม -->
