@@ -16,6 +16,34 @@
                     @endif
                     <div class="card">
                         <div class="card-header"> ตารางข้อมูลแผนก </div>
+                        <table class="table">
+                        <table class="table table-striped">
+                            <thead> 
+                                <tr>
+                                <th scope="col">ลำดับ</th>
+                                <th scope="col">ชื่อแผนก</th>
+                                <th scope="col">UserID</th>
+                                <th score="col">Create_At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php($i=1)
+                                @foreach($departments as $row)
+                                <tr>
+                                    <th>{{$i++}}</th>
+                                    <td>{{$row->department_name}}</td>
+                                    <td>{{$row->user_id}}</td>
+                                    <td>
+                                        @if($row->created_at == NULL)
+                                            ไม่ถูกนิยาม
+                                        @else
+                                            {{Carbon\Carbon::parse($row->created_at)->diffForHumans()}}
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            </table>
                     </div>
                 </div>
                 <!-- ส่วนอีก 4 ส่วนเป็นแบบฟอร์ม -->

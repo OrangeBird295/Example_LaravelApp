@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 class DepartmentController extends Controller
 {
     public function index(){
-        return view('admin.department.index'); 
+        $departments = Department::all();
+        return view('admin.department.index', compact('departments')); 
     }
     public function store(Request $request){
         // debug
@@ -28,17 +29,17 @@ class DepartmentController extends Controller
         ]
         );
         //บันทึกข้อมูล แบบ Eloquent
-        // $department = new Department;
-        // // Column Name = Value From View(index)
-        // $department->department_name = $request->department_name;
-        // $department->user_id = Auth::user()->id; 
-        // $department->save();
+        $department = new Department;
+        // Column Name = Value From View(index)
+        $department->department_name = $request->department_name;
+        $department->user_id = Auth::user()->id; 
+        $department->save();
 
-        //บันทึกข้อมูล แบบ Query Builder ไม่ต้องใช้ model
-        $data = array();
-        $data["department_name"] = $request->department_name;
-        $data["user_id"] = Auth::user()->id;
-        DB::table('departments')->insert($data);
+        // //บันทึกข้อมูล แบบ Query Builder ไม่ต้องใช้ model
+        // $data = array();
+        // $data["department_name"] = $request->department_name;
+        // $data["user_id"] = Auth::user()->id;
+        // DB::table('departments')->insert($data);
 
         return redirect()->back()->with('Success', "บันทึกข้อมูลเรียบร้อย");
     }
