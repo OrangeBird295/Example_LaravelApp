@@ -59,4 +59,11 @@ class DepartmentController extends Controller
 
         return redirect()->back()->with('Success', "บันทึกข้อมูลเรียบร้อย");
     }
+
+    public function edit($id){
+        // dd($id);
+        $department = Department::find($id);
+        // dd($department->department_name);
+        return view('admin.department.edit', compact('department'));
+    }
 }
