@@ -18,6 +18,9 @@ class DepartmentController extends Controller
 
         // Get Value type Query Builder 
         // $departments=DB::table('departments')->get();
+
+        // นำข้อมูลมา Show ตามจำนวนที่ตั่งค่า แบบ Query Builder 
+        // $departments=DB::table('departments')->paginate(3);
         return view('admin.department.index', compact('departments')); 
     }
     public function store(Request $request){

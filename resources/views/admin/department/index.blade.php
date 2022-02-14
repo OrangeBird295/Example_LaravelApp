@@ -22,17 +22,16 @@
                                 <tr>
                                 <th scope="col">ลำดับ</th>
                                 <th scope="col">ชื่อแผนก</th>
-                                <th scope="col">UserID</th>
+                                <th scope="col">พนักงานที่บันทึก</th>
                                 <th score="col">Create_At</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php($i=1)
                                 @foreach($departments as $row)
                                 <tr>
-                                    <th>{{$i++}}</th>
+                                    <th>{{$departments->firstItem()+$loop->index}}</th>
                                     <td>{{$row->department_name}}</td>
-                                    <td>{{$row->user_id}}</td>
+                                    <td>{{$row->user->name}}</td>
                                     <td>
                                         @if($row->created_at == NULL)
                                             ไม่ถูกนิยาม
