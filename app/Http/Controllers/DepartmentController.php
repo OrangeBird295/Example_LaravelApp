@@ -14,13 +14,19 @@ class DepartmentController extends Controller
         // $departments = Department::all();
 
         // นำข้อมูลมา Show ตามจำนวนที่ตั่งค่า 
-        $departments=Department::paginate(3);
+        // $departments=Department::paginate(3);
 
         // Get Value type Query Builder 
         // $departments=DB::table('departments')->get();
 
         // นำข้อมูลมา Show ตามจำนวนที่ตั่งค่า แบบ Query Builder 
         // $departments=DB::table('departments')->paginate(3);
+
+        //Join Table department & users & select value in table
+        $departments=DB::table('departments')
+        ->join('users', 'departments.user_id', 'users.id')
+        ->select('departments.*', 'users.name')->paginate(3);
+
         return view('admin.department.index', compact('departments')); 
     }
     public function store(Request $request){
