@@ -25,6 +25,7 @@
                                 <th scope="col">พนักงานที่บันทึก</th>
                                 <th score="col">Create_At</th>
                                 <th score="col">Edit</th>
+                                <th score="col">Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,7 +33,7 @@
                                 <tr>
                                     <th>{{$departments->firstItem()+$loop->index}}</th>
                                     <td>{{$row->department_name}}</td>
-                                    <td>{{$row->name}}</td>
+                                    <td>{{$row->user->name}}</td>
                                     <td>
                                         @if($row->created_at == NULL)
                                             ไม่ถูกนิยาม
@@ -42,6 +43,9 @@
                                     </td>
                                     <td>
                                         <a href="{{url('department/edit/'.$row->id)}}" class="btn btn-primary">แก้ไข</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{url('department/sofedelete/'.$row->id)}}" class="btn btn-danger">ลบข้อมูล</a>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -14,8 +14,8 @@ class DepartmentController extends Controller
         // $departments = Department::all();
 
         // นำข้อมูลมา Show ตามจำนวนที่ตั่งค่า 
-        // $departments=Department::paginate(3);
-
+        $departments=Department::paginate(3);
+        
         // Get Value type Query Builder 
         // $departments=DB::table('departments')->get();
 
@@ -23,9 +23,9 @@ class DepartmentController extends Controller
         // $departments=DB::table('departments')->paginate(3);
 
         //Join Table department & users & select value in table
-        $departments=DB::table('departments')
-        ->join('users', 'departments.user_id', 'users.id')
-        ->select('departments.*', 'users.name')->paginate(3);
+        // $departments=DB::table('departments')
+        // ->join('users', 'departments.user_id', 'users.id')
+        // ->select('departments.*', 'users.name')->paginate(3);
 
         return view('admin.department.index', compact('departments')); 
     }
@@ -86,5 +86,11 @@ class DepartmentController extends Controller
         ]);
 
         return redirect()->route('department')->with('Success', "อัพเดตข้อมูลเรียบร้อย");
+    }
+
+    //ไม่ได้ลบถาวรแต่จะไปอยู่ในถังขยะ
+    public function sofedelete($id){
+        $delete = Department::find($id)->delete();
+        return redirect()->back()->with('Success', "ลบข้อมูลเรียบร้อย");
     }
 }
