@@ -15,7 +15,7 @@
                         <div class="card-header"> แบบฟอร์มแก้ไขข้อมูล </div>
                         <div class="card-body">
                             <!-- จะวิ่งไปที่ Controller(store) เมื่อกดปุ่ม -->
-                            <form action="" method="post">
+                            <form action="{{url('department/update/'.$department->id)}}" method="post">
                                 <!-- เพื่อป้องกันการ Hack ระบบรูปแบบการป้อน Scirpt -->
                                 @csrf
                                 <div class="form-group">
