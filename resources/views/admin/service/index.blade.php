@@ -60,7 +60,8 @@
                         <div class="card-header"> แบบฟอร์มบริการ </div>
                         <div class="card-body">
                             <!-- จะวิ่งไปที่ Controller(store) เมื่อกดปุ่ม -->
-                            <form action="{{route('addDepartment')}}" method="post">
+                            <!-- enctype จะเป็นการบอกว่า form นี้รองรับประเภท file -->
+                            <form action="{{route('addService')}}" method="post" enctype="mutipart/form-data">
                                 <!-- เพื่อป้องกันการ Hack ระบบรูปแบบการป้อน Scirpt -->
                                 @csrf
                                 <div class="form-group">
@@ -72,9 +73,19 @@
                                     <span class="text-danger">{{$message}}</span>
                                     </div>
                                 @enderror
+                                <div class="form-group">
+                                    <label for="service_image"> ภาพประกอบ </label>
+                                    <input type="file" class="form-control" name="service_image">
+                                </div>
+                                @error('service_image')
+                                    <div class="my-2">
+                                    <span class="text-danger">{{$message}}</span>
+                                    </div>
+                                @enderror
                                 <br>
                                 <input type="submit" value="บันทึก" class="btn btn-primary">
                             </form>
+                            
                         </div>
                     </div>
                 </div>
