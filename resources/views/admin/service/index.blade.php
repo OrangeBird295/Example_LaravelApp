@@ -61,7 +61,7 @@
                         <div class="card-body">
                             <!-- จะวิ่งไปที่ Controller(store) เมื่อกดปุ่ม -->
                             <!-- enctype จะเป็นการบอกว่า form นี้รองรับประเภท file -->
-                            <form action="{{route('addService')}}" method="post" enctype="mutipart/form-data">
+                            <form action="{{route('addService')}}" method="post" enctype="multipart/form-data">
                                 <!-- เพื่อป้องกันการ Hack ระบบรูปแบบการป้อน Scirpt -->
                                 @csrf
                                 <div class="form-group">

@@ -29,13 +29,16 @@ class ServiceController extends Controller
             'service_image.required'=>"กรุณาใส่ภาพประกอบ"
         ]
         );
-        //บันทึกข้อมูล แบบ Eloquent
-        // $department = new Department;
-        // // Column Name = Value From View(index)
-        // $department->department_name = $request->department_name;
-        // $department->user_id = Auth::user()->id; 
-        // $department->save();
-
-        // return redirect()->back()->with('Success', "บันทึกข้อมูลเรียบร้อย");
+        // dd($request->service_name, $request->service_image);
+        //การเข้ารหัสรูปภาพ
+        $service_image = $request->file('service_image');
+        // //Generate ชื่อภาพ
+        $name_gen = hexdec(uniqid()); 
+        // //ดึงนามสกุลรูปภาพ
+        $img_ext = strtolower($service_image->getClientOriginalExtension());
+        // //รวมชื่อและนามสกุล(ต่อ string ใน php ใช้เครื่องหมาย ".")
+        $img_name = $name_gen.'.'.$img_ext;
+        dd($img_name);
+        
     }
 }
