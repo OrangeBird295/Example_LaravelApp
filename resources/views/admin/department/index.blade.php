@@ -53,6 +53,7 @@
                         </table>
                         {{$departments->links()}}
                     </div>
+                    @if (count($trashDepartments) > 0 )
                     <div class="card my-4">
                     <div class="card-header"> ถังขยะ </div>
                         <table class="table">
@@ -84,7 +85,7 @@
                                         <a href="{{url('department/restore/'.$row->id)}}" class="btn btn-primary">กู้คืนข้อมูล</a>
                                     </td>
                                     <td>
-                                        <a href="{{url('department/sofedelete/'.$row->id)}}" class="btn btn-danger">ลบข้อมูลถาวร</a>
+                                        <a href="{{url('department/delete/'.$row->id)}}" class="btn btn-danger">ลบข้อมูลถาวร</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -92,6 +93,7 @@
                         </table>
                         {{$trashDepartments->links()}}
                     </div>
+                    @endif
                 </div>
                 <!-- ส่วนอีก 4 ส่วนเป็นแบบฟอร์ม -->
                 <div class="col-md-4">

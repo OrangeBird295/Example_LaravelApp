@@ -15,6 +15,7 @@ class DepartmentController extends Controller
 
         // นำข้อมูลมา Show ตามจำนวนที่ตั่งค่า 
         $departments=Department::paginate(3);
+        // ข้อมูลจากถังขยะ
         $trashDepartments=Department::onlyTrashed()->paginate(3);
         
         // Get Value type Query Builder 
@@ -99,5 +100,11 @@ class DepartmentController extends Controller
     public function restore($id){
         Department::withTrashed()->find($id)->restore();
         return redirect()->back()->with('Success', "กู้คืนข้อมูลสำเร็จ");
+    }
+
+    //ลบข้อมูลถาวร 
+    public function delete($id){
+        $delete = Department::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->back()->with('Success', "ลบข้อมูลถาวรเรียบร้อย");
     }
 }
