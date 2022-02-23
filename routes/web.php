@@ -7,6 +7,7 @@ use App\Http\Controllers\MemberController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+
+    //Department
     Route::get('/department/all', [DepartmentController::class, 'index'])->name('department');
     Route::post('/department/add', [DepartmentController::class, 'store'])->name('addDepartment');
     Route::get('department/edit/{id}', [DepartmentController::class, 'edit']);
@@ -44,5 +47,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('department/sofedelete/{id}', [DepartmentController::class, 'sofedelete']);
     Route::get('department/restore/{id}', [DepartmentController::class, 'restore']);
     Route::get('department/delete/{id}', [DepartmentController::class, 'delete']);
+
+    //Services
+    Route::get('service/all', [ServiceController::class, 'index'])->name('services');
 });
 
