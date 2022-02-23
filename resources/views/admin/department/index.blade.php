@@ -50,8 +50,47 @@
                                 </tr>
                                 @endforeach
                             </tbody>
-                            </table>
-                            {{$departments->links()}}
+                        </table>
+                        {{$departments->links()}}
+                    </div>
+                    <div class="card my-4">
+                    <div class="card-header"> ถังขยะ </div>
+                        <table class="table">
+                        <table class="table table-striped">
+                            <thead> 
+                                <tr>
+                                <th scope="col">ลำดับ</th>
+                                <th scope="col">ชื่อแผนก</th>
+                                <th scope="col">พนักงานที่บันทึก</th>
+                                <th score="col">Create_At</th>
+                                <th score="col">กู้คืนข้อมูล</th>
+                                <th score="col">ลบถาวร</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($trashDepartments as $row)
+                                <tr>
+                                    <th>{{$trashDepartments->firstItem()+$loop->index}}</th>
+                                    <td>{{$row->department_name}}</td>
+                                    <td>{{$row->user->name}}</td>
+                                    <td>
+                                        @if($row->created_at == NULL)
+                                            ไม่ถูกนิยาม
+                                        @else
+                                            {{Carbon\Carbon::parse($row->created_at)->diffForHumans()}}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{url('department/edit/'.$row->id)}}" class="btn btn-primary">กู้คืนข้อมูล</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{url('department/sofedelete/'.$row->id)}}" class="btn btn-danger">ลบข้อมูลถาวร</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{$trashDepartments->links()}}
                     </div>
                 </div>
                 <!-- ส่วนอีก 4 ส่วนเป็นแบบฟอร์ม -->

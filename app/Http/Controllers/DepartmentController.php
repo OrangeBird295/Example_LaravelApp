@@ -15,6 +15,7 @@ class DepartmentController extends Controller
 
         // นำข้อมูลมา Show ตามจำนวนที่ตั่งค่า 
         $departments=Department::paginate(3);
+        $trashDepartments=Department::onlyTrashed()->paginate(3);
         
         // Get Value type Query Builder 
         // $departments=DB::table('departments')->get();
@@ -27,7 +28,7 @@ class DepartmentController extends Controller
         // ->join('users', 'departments.user_id', 'users.id')
         // ->select('departments.*', 'users.name')->paginate(3);
 
-        return view('admin.department.index', compact('departments')); 
+        return view('admin.department.index', compact('departments', 'trashDepartments')); 
     }
     public function store(Request $request){
         // debug
