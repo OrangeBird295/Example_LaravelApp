@@ -15,7 +15,7 @@
                         <div class="card-header"> แบบฟอร์มแก้ไขข้อมูล </div>
                         <div class="card-body">
                             <!-- จะวิ่งไปที่ Controller(store) เมื่อกดปุ่ม -->
-                            <form action="" method="post">
+                            <form action="{{url('/service/update/'.$service->id)}}" method="post" enctype="multipart/form-data">
                                 <!-- เพื่อป้องกันการ Hack ระบบรูปแบบการป้อน Scirpt -->
                                 @csrf
                                 <div class="form-group">
@@ -27,7 +27,6 @@
                                     <span class="text-danger">{{$message}}</span>
                                     </div>
                                 @enderror
-
                                 <div class="form-group">
                                     <label for="service_image"> ภาพประกอบ </label>
                                     <input type="file" class="form-control" name="service_image" value="{{$service->service_image}}">
@@ -37,6 +36,8 @@
                                     <span class="text-danger">{{$message}}</span>
                                     </div>
                                 @enderror
+                                <br>
+                                <input type="hidden" name="old_image" value="{{$service->service_image}}">
                                 <div class="form-group">
                                     <img src="{{asset($service->service_image)}}" alt="" width="400px" height="400px">
                                 </div>
