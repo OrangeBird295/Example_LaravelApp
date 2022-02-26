@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
+use Carbon\Carbon;
 
 class ServiceController extends Controller
 {
@@ -38,7 +39,18 @@ class ServiceController extends Controller
         $img_ext = strtolower($service_image->getClientOriginalExtension());
         // //รวมชื่อและนามสกุล(ต่อ string ใน php ใช้เครื่องหมาย ".")
         $img_name = $name_gen.'.'.$img_ext;
-        dd($img_name);
+        // dd($img_name);
         
+        //Upload img
+        $upload_location = 'image/services/';
+        $full_path = $upload_location.$img_name;
+        Service::insert([
+
+            'service_name'=>$request->service_name,
+            'service_image'=>$full_path,
+            'created_at'=>Carbon::now()
+        ]);
+        $service_image->move($upload_location,$img_name);
+        return redirect()->back()->with('Success', "บันทึกข้อมูลเรียบร้อย");
     }
 }
