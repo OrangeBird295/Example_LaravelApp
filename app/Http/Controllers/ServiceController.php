@@ -105,4 +105,15 @@ class ServiceController extends Controller
             dd("มีการอัพเดตชื่อ");
         }
     }
+
+    //ลบข้อมูลถาวร 
+    public function delete($id){
+        //delete img
+        $img = Service::find($id)->service_image;
+        unlink($img);
+
+        //delete valur from DB 
+        $delete = Service::find($id)->delete();
+        return redirect()->back()->with('Success', "ลบข้อมูลเรียบร้อย");
+    }
 }
